@@ -1,0 +1,417 @@
+app:
+  description: ''
+  icon: "\U0001F50E"
+  icon_background: '#FFEAD5'
+  mode: workflow
+  name: "\u8054\u7F51\u641C\u7D22Workflow2"
+workflow:
+  features:
+    file_upload:
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+    opening_statement: ''
+    retriever_resource:
+      enabled: false
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        sourceType: start
+        targetType: llm
+      id: 1715661510508-1715661530941
+      source: '1715661510508'
+      sourceHandle: source
+      target: '1715661530941'
+      targetHandle: target
+      type: custom
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: code
+      id: 1715661530941-source-1718526553476-target
+      source: '1715661530941'
+      sourceHandle: source
+      target: '1718526553476'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: code
+        targetType: iteration
+      id: 1718526553476-source-1718534239661-target
+      source: '1718526553476'
+      sourceHandle: source
+      target: '1718534239661'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: iteration
+        targetType: variable-aggregator
+      id: 1718534239661-source-1718534931887-target
+      source: '1718534239661'
+      sourceHandle: source
+      target: '1718534931887'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: variable-aggregator
+        targetType: code
+      id: 1718534931887-source-1718535077627-target
+      source: '1718534931887'
+      sourceHandle: source
+      target: '1718535077627'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: code
+        targetType: llm
+      id: 1718535077627-source-1718499824317-target
+      source: '1718535077627'
+      sourceHandle: source
+      target: '1718499824317'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: end
+      id: 1718499824317-source-1718499894263-target
+      source: '1718499824317'
+      sourceHandle: source
+      target: '1718499894263'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: Start
+        type: start
+        variables:
+        - label: question
+          max_length: 48
+          options: []
+          required: true
+          type: text-input
+          variable: question
+      height: 90
+      id: '1715661510508'
+      position:
+        x: 30
+        y: 307.5
+      positionAbsolute:
+        x: 30
+        y: 307.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: vllm
+          provider: openai_api_compatible
+        prompt_template:
+        - id: 1c7b2834-9c09-4e19-8205-5dae865e2757
+          role: system
+          text: "\u4F60\u662F\u5584\u4E8E\u8FDB\u884C\u7F51\u7EDC\u641C\u7D22\u7684\
+            \u5C0F\u52A9\u624B\uFF0C\u8D1F\u8D23\u628A\u95EE\u9898\u8F6C\u6362\u4E3A\
+            \u8054\u7F51\u641C\u7D22\u5173\u952E\u5B57\u3002\u8BF7\u6839\u636E\u95EE\
+            \u9898\u63D0\u51FA\u4E00\u4E2A\u6216\u8005\u591A\u4E2A\u641C\u7D22\u5173\
+            \u952E\u8BCD\uFF0C\u5E76\u4EE5python\u5217\u8868\u7684\u5F62\u5F0F\u8F93\
+            \u51FA\u3002\u6BD4\u5982\uFF1A\u95EE\u9898\u662F\u201C\u6DF1\u5733\u6709\
+            \u54EA\u4E9B\u597D\u73A9\u7684\u5730\u65B9\u201D\uFF0C\u53EF\u4EE5\u56DE\
+            \u7B54\uFF1A\u201C[\"\u6DF1\u5733\u65C5\u6E38\u666F\u70B9\",\"\u6DF1\u5733\
+            \u7F8E\u98DF\"]\u3002\u6709\u4E9B\u9700\u8981\u5206\u6B65\u9AA4\u641C\u7D22\
+            \u7684\u95EE\u9898\uFF0C\u4E5F\u6839\u636E\u6BCF\u4E00\u6B65\u7684\u9700\
+            \u8981\u63D0\u51FA\u591A\u4E2A\u641C\u7D22\u8BCD\uFF0C\u6BD4\u5982\uFF1A\
+            \u95EE\u9898\u662F\u201C\u7231\u56E0\u65AF\u5766\u548C\u6148\u79A7\u592A\
+            \u540E\u8C01\u5E74\u9F84\u5927\uFF1F\u201D\uFF0C\u4F60\u53EF\u4EE5\u56DE\
+            \u7B54\uFF1A[\"\u7231\u56E0\u65AF\u5766\u51FA\u751F\u65F6\u95F4\",\"\u6148\
+            \u79A7\u592A\u540E\u51FA\u751F\u65F6\u95F4\"]\u3002"
+        - id: 2a8a3933-eba8-4162-9335-762a75234d73
+          role: user
+          text: "\u5F53\u524D\u95EE\u9898\u662F\uFF1A{{#1715661510508.question#}}"
+        selected: false
+        title: "\u63D0\u51FA\u641C\u7D22\u8BCD"
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 98
+      id: '1715661530941'
+      position:
+        x: 334
+        y: 307.5
+      positionAbsolute:
+        x: 334
+        y: 307.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: vllm
+          provider: openai_api_compatible
+        prompt_template:
+        - id: 8b36726b-804f-465d-927a-9adaac947f71
+          role: system
+          text: "\u4F60\u662F\u4E00\u4E2A\u5584\u4E8E\u56DE\u7B54\u95EE\u9898\u7684\
+            AI\u52A9\u624B\uFF0C\u8D1F\u8D23\u6839\u636E\u95EE\u9898\u548C\u5DF2\u7ECF\
+            \u641C\u96C6\u5230\u7684\u4FE1\u606F\uFF0C\u6574\u7406\u51FA\u6700\u7EC8\
+            \u7B54\u6848\u3002"
+        - id: 38d8a4aa-7bc8-4d3c-a42d-9570195498fc
+          role: user
+          text: "\u6211\u7684\u95EE\u9898\u662F\uFF1A{{#1715661510508.question#}}"
+        - id: 13adc83d-b415-4b0a-8111-5ea2cb1dcd9b
+          role: assistant
+          text: "\u597D\u7684\uFF0C\u9488\u5BF9\u8FD9\u4E2A\u95EE\u9898\uFF0C\u6211\
+            \u5236\u5B9A\u4E86\u641C\u7D22\u8BCD\uFF1A\u6211\u5DF2\u7ECF\u641C\u5230\
+            {{#1715661530941.text#}}\uFF0C\u5E76\u4E14\u641C\u5230\u5982\u4E0B\u4FE1\
+            \u606F\uFF1A{{#1718535077627.result#}}"
+        - id: 3301fc32-f91a-4417-acd9-10e286e63e45
+          role: user
+          text: "\u5F88\u597D\uFF0C\u8BF7\u6574\u7406\u51FA\u6700\u7EC8\u7B54\u6848\
+            \uFF0C\u6CE8\u610F\uFF1A\u8BF7\u5584\u4E8E\u5217\u4E3E\u8981\u70B9\u8FDB\
+            \u884C\u95EE\u9898\u56DE\u7B54\uFF0C\u5BF9\u6BCF\u4E00\u4E2A\u8981\u70B9\
+            \u8FDB\u884C\u5C55\u5F00\uFF0C\u7528\u6811\u5F62\u7ED3\u6784\u7EC4\u7EC7\
+            \u7B54\u6848\uFF0C\u8BA9\u63D0\u95EE\u8005\u66F4\u597D\u5730\u7406\u89E3\
+            \u4F60\u56DE\u7B54\u7684\u5185\u5BB9\u3002\u4E00\u5B9A\u8981\u4FDD\u6301\
+            \u4F7F\u7528\u4E2D\u6587\uFF0C\u4E00\u5B9A\u8981\u907F\u514D\u4E2D\u82F1\
+            \u6587\u6DF7\u6392\u3002\u6700\u540E\uFF0C\u8BF7\u5728\u56DE\u7B54\u4E4B\
+            \u524D\u590D\u8FF0\u4E00\u4E0B\u539F\u59CB\u95EE\u9898\u548C\u641C\u7D22\
+            \u8BCD\u3002"
+        selected: false
+        title: "\u603B\u7ED3\u8F93\u51FA"
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 98
+      id: '1718499824317'
+      position:
+        x: 2039
+        y: 307.5
+      positionAbsolute:
+        x: 2039
+        y: 307.5
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        outputs:
+        - value_selector:
+          - '1718499824317'
+          - text
+          variable: output
+        selected: false
+        title: "\u7ED3\u675F"
+        type: end
+      height: 90
+      id: '1718499894263'
+      position:
+        x: 2343
+        y: 307.5
+      positionAbsolute:
+        x: 2343
+        y: 307.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        code: "\ndef main(query) -> dict:\n    import json\n    query = query.replace('\\\
+          \\\"', '')\n    return {\n        \"result\": json.loads(query),\n    }\n"
+        code_language: python3
+        desc: ''
+        outputs:
+          result:
+            children: null
+            type: array[string]
+        selected: false
+        title: "\u6E05\u6D17\u5173\u952E\u8BCD"
+        type: code
+        variables:
+        - value_selector:
+          - '1715661530941'
+          - text
+          variable: query
+      height: 54
+      id: '1718526553476'
+      position:
+        x: 638
+        y: 307.5
+      positionAbsolute:
+        x: 638
+        y: 307.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        height: 215
+        iterator_selector:
+        - '1718526553476'
+        - result
+        output_selector:
+        - '1718534313970'
+        - text
+        output_type: array[string]
+        selected: false
+        startNodeType: tool
+        start_node_id: '1718534313970'
+        title: "\u8FED\u4EE3\u641C\u7D22"
+        type: iteration
+        width: 429
+      height: 215
+      id: '1718534239661'
+      position:
+        x: 942
+        y: 307.5
+      positionAbsolute:
+        x: 942
+        y: 307.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 429
+      zIndex: 1
+    - data:
+        desc: ''
+        isInIteration: true
+        isIterationStart: true
+        iteration_id: '1718534239661'
+        provider_id: 5dd81077-0a38-4520-a358-1b95dba6cdcd
+        provider_name: "\u8054\u7F51\u641C\u7D22"
+        provider_type: api
+        selected: false
+        title: "\u8054\u7F51\u641C\u7D22"
+        tool_configurations: {}
+        tool_label: "\u8054\u7F51\u641C\u7D22"
+        tool_name: "\u8054\u7F51\u641C\u7D22"
+        tool_parameters:
+          query:
+            type: mixed
+            value: '{{#1718534239661.item#}}'
+        type: tool
+      extent: parent
+      height: 54
+      id: '1718534313970'
+      parentId: '1718534239661'
+      position:
+        x: 117
+        y: 85
+      positionAbsolute:
+        x: 1059
+        y: 392.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+      zIndex: 1001
+    - data:
+        desc: ''
+        output_type: array[string]
+        selected: false
+        title: "\u5185\u5BB9\u805A\u5408"
+        type: variable-aggregator
+        variables:
+        - - '1718534239661'
+          - output
+      height: 112
+      id: '1718534931887'
+      position:
+        x: 1431
+        y: 307.5
+      positionAbsolute:
+        x: 1431
+        y: 307.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        code: "\ndef main(contents) -> dict:\n    result = ''\n    content_num = len(contents)\n\
+          \    piece_len = int(8000/content_num)\n    for content in contents:\n \
+          \       if len(content) > piece_len:\n            content = content[:piece_len]\n\
+          \        result += content\n    return {\n        \"result\": result,\n\
+          \    }\n"
+        code_language: python3
+        desc: ''
+        outputs:
+          result:
+            children: null
+            type: string
+        selected: false
+        title: "\u5185\u5BB9\u62FC\u63A5"
+        type: code
+        variables:
+        - value_selector:
+          - '1718534931887'
+          - output
+          variable: contents
+      height: 54
+      id: '1718535077627'
+      position:
+        x: 1735
+        y: 307.5
+      positionAbsolute:
+        x: 1735
+        y: 307.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    viewport:
+      x: -2413.163663275477
+      y: -11.164377811199074
+      zoom: 1.1947925611665222

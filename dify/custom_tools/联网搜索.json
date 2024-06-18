@@ -1,0 +1,36 @@
+{
+    "openapi": "3.1.0",
+    "info": {
+      "title": "联网搜索",
+      "description": "利用搜索引擎进行联网搜索。",
+      "version": "v1.0.0"
+    },
+    "servers": [
+      {
+        "url": "http://leiting6.cn:8300"
+      }
+    ],
+    "paths": {
+      "/search": {
+        "get": {
+          "description": "利用搜索引擎进行联网搜索；如果问题需要多次搜索，则需要多次调用本接口。",
+          "operationId": "联网搜索",
+          "parameters": [
+            {
+              "name": "query",
+              "in": "query",
+              "description": "联网的关键词，如果问题是中文提问，则用中文关键词进行搜索；否则用英文关键词进行搜索。",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "deprecated": false
+        }
+      }
+    },
+    "components": {
+      "schemas": {}
+    }
+  }

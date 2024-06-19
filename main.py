@@ -18,14 +18,15 @@ async def search(query: str, num_results: int = 5):
 
     # extract text from html with multi-threading, and get the return value
     with ThreadPoolExecutor(max_workers=10) as executor:
+        futures = []
         for result in results:
             if 'link' not in result:
                 continue
             futures = [executor.submit(extract_text_from_html3, result['link'])]
-            for future in as_completed(futures):
-                content = future.result()
-                if content:
-                    all_content += content
+        for future in as_completed(futures):
+            content = future.result()
+            if content:
+                all_content += content
 
     if len(all_content) > 7000:
             all_content = all_content[:7000]

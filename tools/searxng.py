@@ -19,7 +19,10 @@ def get_searx_search_results(query: str, num_results: int = 5, categories: str =
     return results
 
 def extract_text_from_html3(url: str) -> str:
+    print("extract_text_from_html: ", url)
     try:
+        if url.endswith(".pdf"):
+            return None
         download = trafilatura.fetch_url(url)
         result = trafilatura.extract(download, include_comments=False)
         if not result:
